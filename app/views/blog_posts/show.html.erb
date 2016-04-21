@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog_post.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @blog_post.user.username %>
+</p>
+
+<p>Created: <%= local_time(@blog_post.created_at) %></p>
+
+<p>
+  <strong>Blog entry:</strong>
+  <%= @blog_post.blog_entry %>
+</p>
+
+<div>
+  <%= render 'comments/form' %>
+</div>
+
+<% @blog_post.comments.each do |comment| %>
+  <div class="well well-sm">
+    <p>Author: <%= comment.user.username %></p>
+    <p>Entry: <%= comment.comment_entry %></p>
+    <p>Created: <%= local_time(comment.created_at) %></p>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
+<%= link_to 'Back', blog_posts_path %>
